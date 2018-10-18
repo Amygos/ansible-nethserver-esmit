@@ -1,0 +1,14 @@
+---
+- block:
+  - name: Load Nethserver networks db
+    command: /sbin/e-smith/db networks showjson
+    register: _nethserver_networks
+  - set_fact:
+      nethserver_networks: "{{ _nethserver_networks.stdout }}"
+
+- block:
+  - name: Load Nethserver config db
+    command: /sbin/e-smith/config showjson
+    register: _nethserver_config
+  - set_fact:
+       nethserver_config: "{{ _nethserver_config.stdout }}"
